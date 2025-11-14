@@ -1,0 +1,61 @@
+name: Build and Push
+
+on:
+  push:
+    branches: ["main"]
+
+env:
+  AWS_REGION: ap-south-1
+
+jobs:
+  
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        working-directory: ./terraform/
+
+      # plan helps in debugging - fail if something is wrong, don't create directly
+      - name: Terraform Plan
+        run: terraform plan
+        working-directory: ./terraform/
+
+      # Create ECR Repos first, so images can be pushed before creation of ECS
+      - name: Terraform Apply -- ECR Repos
+        run: terraform apply --auto-approve 
+        working-directory: ./terraform/
+
+      # fetch dynamic urls of ecr repos from terraform
+      - name: Get ECR URLs from Terraform
+        id: get-ecr
+        run: |
+          CLIENT_URL=$(aws ecr describe-repositories --repository-names client --query "repositories[0].repositoryUri" --output text)
+          echo "client_url=$CLIENT_URL" >> $GITHUB_OUTPUT
+
+      - name: Build & Push Client
+        run: |
+          docker build -t ${{ steps.get-ecr.outputs.client_url }}:latest ./client
+          docker push ${{ steps.get-ecr.outputs.client_url }}:latest
+
+      # - name: Destroy Infrastructure
+      #   run: terraform destroy --auto-approve
+      #   working-directory: ./infrastructure/main_infra/
