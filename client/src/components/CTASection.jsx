@@ -38,7 +38,7 @@ const CTASection = () => {
           viewport={{ once: true }}
         >
           <Link
-            to="/dash"
+            to="/text"
             className="px-10 py-4 rounded-xl bg-linear-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg shadow-xl hover:opacity-90 transition inline-block"
           >
             Go to Dashboard →
