@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import GenText from './pages/GenText'
 import Navbar from './components/Navbar'
 import ReWrite from './pages/ReWrite'
+import GenImage from './pages/GenImage'
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/text" element={<GenText />} />
         <Route path="/write" element={<ReWrite />} />
+        <Route path="/img" element={<GenImage />} />
       </Routes>
     </>
   )
