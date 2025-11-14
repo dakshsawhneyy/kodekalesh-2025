@@ -23,6 +23,9 @@ const Navbar = () => {
                      <Link to="/write" className="text-white/70 hover:text-white transition text-sm font-medium">
                        ReWrite
                      </Link>
+                     <Link to="/img" className="text-white/70 hover:text-white transition text-sm font-medium">
+                       GenImage
+                     </Link>
                    </div>
              :
              <p className="text-white ">Log in to access our features</p>      
