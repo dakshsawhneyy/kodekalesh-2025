@@ -39,7 +39,7 @@ const ReWrite = () => {
           </svg>
         </button>
 
-        <h1 className="text-4xl font-semibold text-white tracking-wide text-center mb-4">Rewrite Text</h1>
+        <h1 className="text-4xl font-semibold text-white tracking-wide text-center mb-4">Rewrite Text For Different Platforms</h1>
 
         {/* Input Section */}
         <motion.div whileHover={{ scale: 1.01 }} className="backdrop-blur-xl bg-white/10 p-6 border border-white/20 rounded-2xl shadow-lg space-y-4">
@@ -78,9 +78,16 @@ const ReWrite = () => {
             onClick={handleSubmit}
             className="w-full py-3 rounded-xl bg-blue-500/80 hover:bg-blue-600 transition-all shadow-xl text-white text-lg font-semibold"
           >
-            Rewrite
+            Rewrite 
           </motion.button>
         </motion.div>
+
+        <button
+  onClick={() => (window.location.href = "/feedback")}
+  className="p-3 rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-xl shadow-md"
+>
+  Give Feedback
+</button>
 
               {output && (
   <div className="mt-10 p-6 bg-white/10 border border-white/20 rounded-2xl text-white">
