@@ -6,6 +6,7 @@ import GenText from './pages/GenText'
 import Navbar from './components/Navbar'
 import ReWrite from './pages/ReWrite'
 import GenImage from './pages/GenImage'
+import FeedbackForm from './pages/Feedback'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/text" element={<GenText />} />
         <Route path="/write" element={<ReWrite />} />
         <Route path="/img" element={<GenImage />} />
+        <Route path="/feedback" element={<FeedbackForm />} />
       </Routes>
     </>
   )

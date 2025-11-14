@@ -26,7 +26,7 @@ const CTASection = () => {
 
         {/* Subtext */}
         <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-          cGen helps you generate high-quality notes, captions, ads, blogs, 
+          KreatoR helps you generate high-quality notes, captions, ads, blogs, 
           rewrites and more — all perfectly structured and ready in seconds.
         </p>
 

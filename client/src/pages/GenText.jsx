@@ -112,7 +112,7 @@ setOutput(data);
             >
               <option value="">Select Language</option>
               <option value="English">English</option>
-              <option value="Hindi">Hindi</option>
+              <option value="Hindi">French</option>
               <option value="Hinglish">Hinglish</option>
             </select>
           </motion.div>
@@ -150,6 +150,13 @@ setOutput(data);
         >
           Generate
         </motion.button>
+
+        <button
+  onClick={() => (window.location.href = "/feedback")}
+  className="p-3 rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-xl shadow-md"
+>
+  Give Feedback
+</button>
 
       {output && (
   <div className="mt-10 p-6 bg-white/10 border border-white/20 rounded-2xl text-white">

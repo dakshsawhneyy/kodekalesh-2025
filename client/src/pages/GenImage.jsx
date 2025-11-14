@@ -124,6 +124,13 @@ const GenImage = () => {
           Generate Image
         </motion.button>
 
+<button
+  onClick={() => (window.location.href = "/feedback")}
+  className="p-3 rounded-xl bg-white/10 text-white border border-white/20 hover:bg-white/20 backdrop-blur-xl shadow-md"
+>
+  Give Feedback
+</button>
+
         {/* IMAGE RESULT */}
         {image && (
           <div className="mt-10 p-6 bg-white/10 border border-white/20 rounded-2xl flex justify-center">

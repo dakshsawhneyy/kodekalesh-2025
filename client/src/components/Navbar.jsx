@@ -9,7 +9,7 @@ const Navbar = () => {
 
         {/* Brand */}
         <h1 className="text-2xl font-semibold tracking-wide bg-linear-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-          cGen
+          KreatoR
         </h1>
 
         {/* Links */}
