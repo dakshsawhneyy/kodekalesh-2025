@@ -13,20 +13,21 @@ const Navbar = () => {
         </h1>
 
         {/* Links */}
-        <div className="hidden md:flex space-x-8">
-          <Link to="/" className="text-white/70 hover:text-white transition text-sm font-medium">
-            Home
-          </Link>
-          <Link to="/text" className="text-white/70 hover:text-white transition text-sm font-medium">
-            GenText
-          </Link>
-          <Link to="/write" className="text-white/70 hover:text-white transition text-sm font-medium">
-            ReWrite
-          </Link>
-          <Link to="/about" className="text-white/70 hover:text-white transition text-sm font-medium">
-            About
-          </Link>
-        </div>
+        {
+          localStorage.getItem('token') ?
+            <div className="hidden md:flex space-x-8">
+                     
+                     <Link to="/text" className="text-white/70 hover:text-white transition text-sm font-medium">
+                       GenText
+                     </Link>
+                     <Link to="/write" className="text-white/70 hover:text-white transition text-sm font-medium">
+                       ReWrite
+                     </Link>
+                   </div>
+             :
+             <p className="text-white ">Log in to access our features</p>      
+        }
+       
 
         {/* Login Button */}
         {

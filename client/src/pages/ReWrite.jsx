@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
 
 const ReWrite = () => {
   const [form, setForm] = useState({
     text: "",
-    tone: "",
     platform: "",
   });
 
   const [output, setOutput] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -17,17 +16,16 @@ const ReWrite = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-
-    // Mock AI response
-    setTimeout(() => {
-      setOutput(
-        `Rewritten (${form.tone}, for ${form.platform}): \n\n` + form.text
-      );
-      setLoading(false);
-    }, 1200);
+    console.log(form);
+    try {
+        const response = await axios.post("https://rv6p8wji3k.execute-api.ap-south-1.amazonaws.com/kode-kalesh/rewriteForPlatform",form);
+        console.log(response.data);
+        setOutput(response.data);
+    } catch (error) {
+      console.log(error.message)
+    }
   };
- return (
+ return  localStorage.getItem('token') ? (
     <div className="min-h-screen  w-full flex justify-center items-start p-10 bg-linear-to-br from-[#0f0f1f] via-[#161628] to-[#0c0c18] relative">
       <div className="w-full max-w-4xl space-y-10">
 
@@ -55,23 +53,6 @@ const ReWrite = () => {
             className="w-full p-3 rounded-xl bg-[#1b1b2d] text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
 
-          {/* Tone */}
-          <div>
-            <label className="block mb-1 text-sm text-gray-300">Tone</label>
-            <select
-              name="tone"
-              value={form.tone}
-              onChange={handleChange}
-              className="w-full p-3 rounded-xl bg-[#1b1b2d] text-white border border-white/20 focus:outline-none focus:ring-2 focus:ring-blue-400"
-            >
-              <option className="bg-[#1b1b2d]" value="" disabled>Select Tone</option>
-              <option className="bg-[#1b1b2d]" value="Formal">Formal</option>
-              <option className="bg-[#1b1b2d]" value="Casual">Casual</option>
-              <option className="bg-[#1b1b2d]" value="Professional">Professional</option>
-              <option className="bg-[#1b1b2d]" value="Friendly">Friendly</option>
-              <option className="bg-[#1b1b2d]" value="Funny">Funny</option>
-            </select>
-          </div>
 
           {/* Platform */}
           <div>
@@ -101,17 +82,53 @@ const ReWrite = () => {
           </motion.button>
         </motion.div>
 
-        {/* Output Section */}
-        <motion.div animate={{ opacity: output ? 1 : 0 }} className="backdrop-blur-xl bg-white/10 p-6 border border-white/20 rounded-2xl shadow-lg text-white whitespace-pre-wrap min-h-[150px]">
-          {loading ? (
-            <p className="text-gray-300">Rewriting...</p>
-          ) : (
-            output || <p className="text-gray-400">Your rewritten text will appear here...</p>
-          )}
-        </motion.div>
+              {output && (
+  <div className="mt-10 p-6 bg-white/10 border border-white/20 rounded-2xl text-white">
+    {Object.keys(output).map((key) => (
+      <div key={key} className="mb-6">
+        <h2 className="text-2xl font-semibold capitalize mb-2">{key.replace(/_/g, ' ')}</h2>
+
+        {Array.isArray(output[key]) ? (
+          <ul className="list-disc pl-6">
+            {output[key].map((item, idx) => (
+              <li key={idx}>{item}</li>
+            ))}
+          </ul>
+        ) : (
+          <p className="text-gray-300">{output[key]}</p>
+        )}
+      </div>
+    ))}
+  </div>
+)}
+
+
       </div>
     </div>
-  );
+  )
+  :
+   (
+   <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-[#0d0d0f] via-[#1a1a1d] to-[#0e0e10] px-4">
+  <div className="backdrop-blur-2xl bg-white/5 border border-white/10 px-10 py-12 rounded-3xl shadow-2xl text-center max-w-md w-full">
+    
+    <h1 className="text-3xl font-semibold text-white mb-4 tracking-wide">
+      Please Login to Continue
+    </h1>
+
+    <p className="text-white/60 text-sm mb-8">
+      Access your dashboard and start exploring powerful features.
+    </p>
+
+    <a
+      href="/login"
+      className="inline-block bg-linear-to-r from-purple-600 to-pink-600 text-white py-3 px-6 rounded-xl font-medium shadow-lg hover:opacity-90 transition cursor-pointer"
+    >
+      Go to Login
+    </a>
+  </div>
+</div>
+  )
+
 }
 
 export default ReWrite
