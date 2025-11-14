@@ -46,7 +46,7 @@ setOutput(data);
     }
   };
 
-  return (
+ return  localStorage.getItem('token') ? (
     <div className="min-h-screen w-full flex justify-center items-start p-10 bg-linear-to-br from-[#0f0f1f] via-[#161628] to-[#0c0c18] relative">
       <div className="w-full max-w-4xl space-y-10">
         {/* BACK BUTTON */}
@@ -56,6 +56,8 @@ setOutput(data);
         >
           ←
         </button>
+
+       
 
         <h1 className="text-4xl font-semibold text-white text-center">
           Generate Text
@@ -172,7 +174,29 @@ setOutput(data);
 
       </div>
     </div>
-  );
+  ) 
+  :
+  (
+   <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-[#0d0d0f] via-[#1a1a1d] to-[#0e0e10] px-4">
+  <div className="backdrop-blur-2xl bg-white/5 border border-white/10 px-10 py-12 rounded-3xl shadow-2xl text-center max-w-md w-full">
+    
+    <h1 className="text-3xl font-semibold text-white mb-4 tracking-wide">
+      Please Login to Continue
+    </h1>
+
+    <p className="text-white/60 text-sm mb-8">
+      Access your dashboard and start exploring powerful features.
+    </p>
+
+    <a
+      href="/login"
+      className="inline-block bg-linear-to-r from-purple-600 to-pink-600 text-white py-3 px-6 rounded-xl font-medium shadow-lg hover:opacity-90 transition cursor-pointer"
+    >
+      Go to Login
+    </a>
+  </div>
+</div>
+  )
 };
 
 export default GenText;

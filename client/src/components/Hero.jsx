@@ -21,16 +21,14 @@ return (
         </motion.h1>
 
         {/* Subtext */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="text-white/60 text-lg md:text-xl leading-relaxed mb-10"
-        >
-          cGen is your AI-powered content generation platform.
-          <br />  
-          Instantly generate educational notes, blog articles, IG captions, ads, and more — all perfectly structured.
-        </motion.p>
+     <motion.p
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 0.5, duration: 0.8 }}
+  className="text-white/60 text-lg md:text-xl leading-relaxed mb-10"
+>
+  Create precise, platform-ready content — from refined text to sharp visuals — all tailored exactly to your needs.
+</motion.p>
 
         {/* Animated Buttons */}
         {/* <motion.div

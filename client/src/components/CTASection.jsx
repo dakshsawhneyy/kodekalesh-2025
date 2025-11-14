@@ -26,24 +26,35 @@ const CTASection = () => {
 
         {/* Subtext */}
         <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto mb-10">
-          cGen helps you generate high-quality educational notes, captions, ads, 
-          blogs and more — all perfectly structured and ready to use in seconds.
+          cGen helps you generate high-quality notes, captions, ads, blogs, 
+          rewrites and more — all perfectly structured and ready in seconds.
         </p>
 
-        {/* CTA Button */}
+        {/* CTA Buttons */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
           viewport={{ once: true }}
+          className="flex flex-col md:flex-row items-center justify-center gap-6"
         >
+          {/* Generate Texts */}
           <Link
             to="/text"
             className="px-10 py-4 rounded-xl bg-linear-to-r from-purple-600 to-pink-600 text-white font-semibold text-lg shadow-xl hover:opacity-90 transition inline-block"
           >
-            Go to Dashboard →
+            Generate texts →
+          </Link>
+
+          {/* Rewrite Texts */}
+          <Link
+            to="/write"
+            className="px-10 py-4 rounded-xl bg-linear-to-r from-pink-600 to-purple-600 text-white font-semibold text-lg shadow-xl hover:opacity-90 transition inline-block"
+          >
+            Rewrite texts →
           </Link>
         </motion.div>
+
       </motion.div>
     </section>
   );

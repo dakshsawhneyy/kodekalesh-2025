@@ -24,8 +24,8 @@ const Feature = () => {
         viewport={{ once: true }}
         className="text-white/70 text-center max-w-2xl mx-auto mb-14 text-lg"
       >
-        Built to generate structured, high-quality content for multiple industries.  
-        Fast, consistent and fully customizable.
+        Crafted to deliver precise, structured and platform-ready content —  
+        whether it’s refined text, rewrites or sharp AI-generated visuals.
       </motion.p>
 
       {/* Feature Cards */}
@@ -44,8 +44,8 @@ const Feature = () => {
              Education Content
           </h3>
           <p className="text-white/60 leading-relaxed">
-            Generate structured notes, bullet points, examples,  
-            and MCQs automatically for any topic.
+            Generate clean, structured notes, bullet points, examples,  
+            and MCQs for any topic with accurate, filtered output.
           </p>
         </motion.div>
 
@@ -62,8 +62,8 @@ const Feature = () => {
              Social Media
           </h3>
           <p className="text-white/60 leading-relaxed">
-            Create top-performing IG captions, post copies,  
-            hashtags and hooks tailored to your tone.
+            Rewrite or refine text into platform-ready captions, hooks,  
+            hashtags and short-form content that matches your style.
           </p>
         </motion.div>
 
@@ -80,8 +80,8 @@ const Feature = () => {
              Marketing & Ads
           </h3>
           <p className="text-white/60 leading-relaxed">
-            Generate high-converting ad copies with hooks,  
-            benefits, CTAs and persuasive messaging.
+            Produce sharp, high-intent ad copies with hooks,  
+            benefits and clear CTAs for better conversions.
           </p>
         </motion.div>
 
@@ -91,4 +91,4 @@ const Feature = () => {
   );
 }
 
-export default Feature
+export default Feature;
