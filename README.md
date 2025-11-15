@@ -8,6 +8,11 @@ Content creation today is scattered and slow. Whether it’s a teacher preparing
 - If I ask for DBMS notes as a student, I don’t get subtopics, MCQs, flashcards, definitions, or a proper roadmap. If someone wants a poster, they don’t get a clean, ready-to-use visual. If a creator wants a caption for Instagram, the output still doesn’t match the tone of the platform.
 - Overall, people spend more time fixing what the AI gives rather than using it directly.
 
+**What we implemented**
+- We created a unified platform that can generate educational notes, flashcards, MCQs, blog outlines, summaries, marketing content, public-outreach explanations, social-media captions, and even posters.
+- Each category has its own format, style, and structure so the output is actually useful.
+- We used **AWS Bedrock** for text and image generation, and built everything on a fully serverless stack using **Lambda**, **API Gateway**, **S3**, and **DynamoDB**. For deployment, we added **Terraform** and **GitHub Actions** to automate our **ECR** setup and container pushes, and used **Amplify** for hosting the frontend. This keeps the entire platform fast, scalable, and easy to maintain.
+  
 ## Key Features
 - Multi-domain content generation with structured JSON outputs.
 - Platform-specific rewriting for Instagram, Twitter, LinkedIn, and YouTube.
