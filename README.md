@@ -3,6 +3,11 @@
 ## Overview
 Kraftor is a serverless AI-powered content automation platform designed for fast, structured generation of text and images across multiple domains: social media, education, blogs, marketing, and public outreach.
 
+## The problem
+Content creation today is scattered and slow. Whether it’s a teacher preparing notes, a student studying DBMS, or a marketing team planning a campaign, everyone ends up using multiple tools and doing a lot of manual rewriting. Even with AI tools available, the output is usually generic. 
+- If I ask for DBMS notes as a student, I don’t get subtopics, MCQs, flashcards, definitions, or a proper roadmap. If someone wants a poster, they don’t get a clean, ready-to-use visual. If a creator wants a caption for Instagram, the output still doesn’t match the tone of the platform.
+- Overall, people spend more time fixing what the AI gives rather than using it directly.
+
 ## Key Features
 - Multi-domain content generation with structured JSON outputs.
 - Platform-specific rewriting for Instagram, Twitter, LinkedIn, and YouTube.
