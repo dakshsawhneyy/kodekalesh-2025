@@ -39,23 +39,23 @@ jobs:
         run: terraform plan
         working-directory: ./terraform/
 
-      # Create ECR Repos first, so images can be pushed before creation of ECS
-      #- name: Terraform Apply -- ECR Repos
-        #run: terraform apply --auto-approve 
-        #working-directory: ./terraform/
+      #Create ECR Repos first, so images can be pushed before creation of ECS
+      - name: Terraform Apply -- ECR Repos
+        run: terraform apply --auto-approve 
+        working-directory: ./terraform/
 
       # fetch dynamic urls of ecr repos from terraform
-      #- name: Get ECR URLs from Terraform
-        #id: get-ecr
-        #run: |
-          #CLIENT_URL=$(aws ecr describe-repositories --repository-names client --query "repositories[0].repositoryUri" --output text)
-          #echo "client_url=$CLIENT_URL" >> $GITHUB_OUTPUT
+      - name: Get ECR URLs from Terraform
+        id: get-ecr
+        run: |
+          CLIENT_URL=$(aws ecr describe-repositories --repository-names client --query "repositories[0].repositoryUri" --output text)
+          echo "client_url=$CLIENT_URL" >> $GITHUB_OUTPUT
 
-      #- name: Build & Push Client
-        #run: |
-          #docker build -t ${{ steps.get-ecr.outputs.client_url }}:latest ./client
-          #docker push ${{ steps.get-ecr.outputs.client_url }}:latest
+      - name: Build & Push Client
+        run: |
+          docker build -t ${{ steps.get-ecr.outputs.client_url }}:latest ./client
+          docker push ${{ steps.get-ecr.outputs.client_url }}:latest
 
-      # - name: Destroy Infrastructure
-      #   run: terraform destroy --auto-approve
-      #   working-directory: ./infrastructure/main_infra/
+      - name: Destroy Infrastructure
+        run: terraform destroy --auto-approve
+        working-directory: ./terraform/
