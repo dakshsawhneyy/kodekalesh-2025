@@ -12,7 +12,7 @@ Kraftor is a serverless AI-powered content automation platform designed for fast
 - Fully serverless architecture on AWS (Lambda, API Gateway, DynamoDB, S3, Bedrock).
 
 ## AWS Architecture 
-<img width="1106" height="929" alt="diagram-export-11-14-2025-2_43_40-PM 1" src="https://github.com/user-attachments/assets/27dafb14-238e-4778-8352-b87aef3ef995" />
+<img width="1106" height="853" alt="image" src="https://github.com/user-attachments/assets/bba09d80-0431-4a00-b74e-c1d73bc89850" />
 
 ## CloudWatch Metrics (Insert Screenshots)
 <img width="1843" height="854" alt="7076b404-9d47-4d14-b355-692de3df4cba" src="https://github.com/user-attachments/assets/ad0d5eea-ca21-4db1-be8c-775cd93057af" />
