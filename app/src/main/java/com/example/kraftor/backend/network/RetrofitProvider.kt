@@ -3,10 +3,13 @@ package com.example.kraftor.backend.network
 /**
  * Object to build the Base URL for the REST API Calls
  * @param -> context: Context
- * @return -> ApiService class object
+ * @return -> ApiService class object to make API calls
  * */
 
 import android.content.Context
+
+// class imports
+import com.example.kraftor.data.local.TokenStorage
 
 // HTTP requests
 import okhttp3.OkHttpClient
@@ -34,7 +37,7 @@ object RetrofitProvider {
         // create auth token interceptor
         val authInterceptor = AuthInterceptor(tokenStorage)
 
-        // build HTTP Client
+        // build HTTP Client for handling API calls
         val client = OkHttpClient.Builder()
             .addInterceptor(authInterceptor) // add auth token to request header
             .connectTimeout(30, TimeUnit.SECONDS) // connection timeout limit
@@ -46,7 +49,7 @@ object RetrofitProvider {
             .add(KotlinJsonAdapterFactory())
             .build()
 
-        // build retrofit object for making/handling API calls
+        // build retrofit object for making API routes
         val retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
