@@ -23,8 +23,7 @@ class AuthInterceptor(private val tokenStorage: TokenStorage): Interceptor{
         val builder  = original.newBuilder()
 
         // get auth token from local storage (null) if logged out
-        val token = tokenStorage.getToken()?.let{ token ->
-
+        val token = tokenStorage.getToken()?.let{ token->
             // add to request header
             builder.addHeader("Authorization", "$token")
         }

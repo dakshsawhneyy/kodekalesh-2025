@@ -29,7 +29,7 @@ object RetrofitProvider {
 
     private const val BASE_URL = "https://rv6p8wji3k.execute-api.ap-south-1.amazonaws.com/kode-kalesh"
 
-    fun createAPI(context: Context): ApiService{
+    fun createAPI(context: Context): APIService{
 
         // get user token
         val tokenStorage = TokenStorage(context.applicationContext)
@@ -56,7 +56,7 @@ object RetrofitProvider {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
 
-        return retrofit.create(ApiService :: class.java)
+        return retrofit.create(APIService :: class.java)
 
     }
 
