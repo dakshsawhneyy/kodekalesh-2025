@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 // making API calls
 import retrofit2.Retrofit
 
-//De-Serialization of JSONs
+// De-Serialization of JSONs
 import com.squareup.moshi.Moshi
 import retrofit2.converter.moshi.MoshiConverterFactory
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -46,6 +46,7 @@ object RetrofitProvider {
 
         // build moshi object for JSON to dataclass conversion
         val moshi = Moshi.Builder()
+            .add(CustomJSONAdapterFactory())
             .add(KotlinJsonAdapterFactory())
             .build()
 
