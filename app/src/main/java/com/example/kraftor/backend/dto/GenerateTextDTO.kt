@@ -1,7 +1,5 @@
 package com.example.kraftor.backend.dto
 
-import kotlinx.serialization.Serializable
-
 data class GenerateTextRequest(
     val category: String,
     val topic: String,

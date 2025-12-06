@@ -12,9 +12,9 @@ import java.lang.reflect.Type
 /**
  * Custom JSON Adapter for parsing the result outputs.
  * Sometimes the JSON output might be a JSON type response and sometimes a JSON wrapped in a string
- * @param -> moshi: Moshi class object
- * @param -> category: Category of the type of response (selected by user in UI)
- * @returns -> JSON Adapter for parsing the response type JSON/JSON string
+ * @param  Moshi class object
+ * @param  Category of the type of response (selected by user in UI)
+ * @return JSON Adapter for parsing the response type JSON/JSON string
  * */
 
 class CustomJSONAdapter(private val moshi: Moshi,

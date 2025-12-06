@@ -1,11 +1,5 @@
 package com.example.kraftor.backend.network
 
-/**
- * Object to build the Base URL for the REST API Calls
- * @param -> context: Context
- * @return -> ApiService class object to make API calls
- * */
-
 import android.content.Context
 
 // class imports
@@ -25,6 +19,11 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 import kotlin.jvm.java
 
+/**
+ * Object to build the Base URL for the REST API Calls
+ * @param Context application context
+ * @return ApiService class object to make API calls
+ * */
 object RetrofitProvider {
 
     private const val BASE_URL = "https://rv6p8wji3k.execute-api.ap-south-1.amazonaws.com/kode-kalesh"

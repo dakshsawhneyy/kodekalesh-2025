@@ -9,8 +9,8 @@ import okhttp3.Response
 
 /**
  * class to authorize the user request by adding user auth token to the request header
- * @param -> tokenStorage: TokenStorage class object containing user auth token
- * @return -> Interceptor class object with modified request header
+ * @param TokenStorage class object containing user auth token
+ * @return Interceptor class object with modified request header
  */
 class AuthInterceptor(private val tokenStorage: TokenStorage): Interceptor{
 

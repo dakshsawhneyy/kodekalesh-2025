@@ -1,6 +1,6 @@
 package com.example.kraftor.backend.network
 
-// HTTP request imports
+// library imports
 import com.example.kraftor.backend.dto.GenerateImageRequest
 import com.example.kraftor.backend.dto.GenerateImageResponse
 import com.example.kraftor.backend.dto.GenerateTextRequest
@@ -13,6 +13,8 @@ import com.example.kraftor.backend.dto.RewriteRequest
 import com.example.kraftor.backend.dto.RewriteResponse
 import com.example.kraftor.backend.dto.SignupRequest
 import com.example.kraftor.backend.dto.SignupResponse
+
+// HTTP request imports
 import  retrofit2.http.Body
 import retrofit2.http.POST
 
