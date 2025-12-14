@@ -1,11 +1,14 @@
 package com.example.kraftor.backend.network
 
+// class imports
 import com.example.kraftor.backend.dto.BlogResponse
 import com.example.kraftor.backend.dto.EducationResponse
 import com.example.kraftor.backend.dto.GenerateTextResponse
 import com.example.kraftor.backend.dto.MarketingResponse
 import com.example.kraftor.backend.dto.PublicOutreachResponse
 import com.example.kraftor.backend.dto.SocialMediaResponse
+
+// Moshi and Type import
 import com.squareup.moshi.*
 import java.lang.reflect.Type
 

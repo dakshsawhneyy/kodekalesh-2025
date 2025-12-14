@@ -1,6 +1,6 @@
 package com.example.kraftor.backend.network
 
-// library imports
+// class imports
 import com.example.kraftor.backend.dto.GenerateImageRequest
 import com.example.kraftor.backend.dto.GenerateImageResponse
 import com.example.kraftor.backend.dto.GenerateTextRequest

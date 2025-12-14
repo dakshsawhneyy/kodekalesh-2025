@@ -3,7 +3,6 @@ package com.example.kraftor.data.repository
 import com.example.kraftor.backend.dto.RewriteRequest
 import com.example.kraftor.backend.dto.RewriteResponse
 import com.example.kraftor.backend.network.APIService
-import com.example.kraftor.backend.network.CategoryStore
 
 /**
  * class for making the actual call to the rewrite API
@@ -13,7 +12,7 @@ import com.example.kraftor.backend.network.CategoryStore
  * */
 class RewriteTextRepo(private val apiService: APIService){
 
-    suspend fun RewriteText(req: RewriteRequest): Result<RewriteResponse> {
+    suspend fun rewriteText(req: RewriteRequest): Result<RewriteResponse> {
 
         return runCatching{
             // return result of API call

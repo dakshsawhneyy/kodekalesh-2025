@@ -12,7 +12,7 @@ import com.example.kraftor.backend.network.APIService
  * */
 class LoginRepo(private val apiService: APIService){
 
-    suspend fun generateText(req: LoginRequest): Result<LoginResponse> {
+    suspend fun login(req: LoginRequest): Result<LoginResponse> {
 
         return runCatching{
             // return result of API call
