@@ -24,7 +24,7 @@ class ReviewViewModel(
     // read-only version the UI will observe.
     val uiState = _uiState.asStateFlow()
 
-    fun generateText(request: ReviewRequest) {
+    fun giveReview(request: ReviewRequest) {
 
         // launch a coroutine that is automatically cancelled
         // when the ViewModel is destroyed, preventing memory leaks.

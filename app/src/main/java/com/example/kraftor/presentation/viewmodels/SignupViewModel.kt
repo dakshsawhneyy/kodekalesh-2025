@@ -24,7 +24,7 @@ class SignupViewModel(
     // read-only version the UI will observe.
     val uiState = _uiState.asStateFlow()
 
-    fun login(request: SignupRequest) {
+    fun signup(request: SignupRequest) {
 
         // launch a coroutine that is automatically cancelled
         // when the ViewModel is destroyed, preventing memory leaks.
