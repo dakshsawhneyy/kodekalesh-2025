@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.work.runtime.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,11 +57,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-
-
-    implementation("com.amplifyframework:core:2.30.4")
-    implementation("com.amplifyframework:aws-api:2.30.4")        // REST or GraphQL
-    implementation("com.amplifyframework:aws-auth-cognito:2.30.4") // Only if using auth
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
 
@@ -74,4 +70,6 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.1")
+
+    implementation("io.coil-kt:coil-compose:2.6.0")
 }
