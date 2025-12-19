@@ -1,5 +1,6 @@
 package com.example.kraftor.ui.screens
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -8,6 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -15,10 +19,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,6 +31,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.kraftor.R
+import com.example.kraftor.ui.theme.KraftoRTheme
 
 private enum class AuthMode {
     LOGIN,
@@ -36,7 +39,10 @@ private enum class AuthMode {
 }
 
 @Composable
-fun AuthScreen() {
+fun AuthScreen(
+
+    onAuthSuccess: () -> Unit
+) {
     var authMode by remember { mutableStateOf(AuthMode.LOGIN) }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -50,10 +56,12 @@ fun AuthScreen() {
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+
         Icon(
             painter = painterResource(id = R.drawable.ic_launcher_foreground),
             contentDescription = "App Logo",
-            tint = MaterialTheme.colorScheme.primary
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.height(100.dp)
         )
         Text(
             text = if (authMode == AuthMode.LOGIN) "Welcome Back" else "Create an Account",
@@ -81,13 +89,9 @@ fun AuthScreen() {
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             trailingIcon = {
-                val image = if (passwordVisible)
-                    painterResource(id = R.drawable.ic_launcher_foreground)
-                else
-                    painterResource(id = R.drawable.ic_launcher_foreground)
-
+                val image = if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility
                 IconButton(onClick = { passwordVisible = !passwordVisible }) {
-                    Icon(painter = image, contentDescription = "Toggle password visibility")
+                    Icon(imageVector = image, contentDescription = "Toggle password visibility")
                 }
             }
         )
@@ -107,7 +111,7 @@ fun AuthScreen() {
         }
 
         Button(
-            onClick = { /* TODO: Handle login or signup logic */ },
+            onClick = { onAuthSuccess() },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(if (authMode == AuthMode.LOGIN) "Login" else "Sign Up")
@@ -128,9 +132,19 @@ fun AuthScreen() {
 }
 
 @Preview(showBackground = true, name = "Login Mode")
+@Preview(showBackground = true, name = "Login Mode - Dark", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 private fun AuthScreenLoginPreview() {
-    MaterialTheme {
-        AuthScreen()
+    KraftoRTheme {
+        AuthScreen(onAuthSuccess = { })
+    }
+}
+
+@Preview(showBackground = true, name = "Sign Up Mode")
+@Composable
+private fun AuthScreenSignUpPreview() {
+    var authMode by remember { mutableStateOf(AuthMode.SIGN_UP) }
+    KraftoRTheme {
+        AuthScreen(onAuthSuccess = { })
     }
 }
