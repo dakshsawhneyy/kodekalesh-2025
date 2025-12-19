@@ -1,9 +1,26 @@
 package com.example.kraftor.ui.screens
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -12,7 +29,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.work.Configuration
 import coil.compose.AsyncImage
 import com.example.kraftor.R
 import com.example.kraftor.backend.dto.GenerateImageRequest
@@ -27,16 +43,15 @@ import kotlinx.coroutines.flow.StateFlow
 fun GenerateImageScreen(viewModel: GenerateImageViewModel) {
     val uiState by viewModel.uiState.collectAsState()
 
-    // --- State for UI inputs, with empty initial values ---
+    // State for UI inputs
     var topic by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf("") }
     var selectedPurpose by remember { mutableStateOf("") }
 
-    // --- Input Options ---
-    val categories = listOf("Marketing", "Social Media", "Product", "Illustration")
-    val purposes = listOf("Advertisement", "Banner", "Icon", "Concept Art")
+    val categories = listOf("poster", "logo", "banner", "thumbnail", "ad")
+    val purposes = listOf("social_media","branding", "entertainment", "education", "marketing")
 
-    // Set initial default selection when the screen first launches
+    // Set default selection when the screen first launches
     LaunchedEffect(Unit) {
         if (categories.isNotEmpty()) {
             selectedCategory = categories[0]
@@ -55,7 +70,6 @@ fun GenerateImageScreen(viewModel: GenerateImageViewModel) {
     ) {
         Text("Generate Image", style = MaterialTheme.typography.headlineSmall)
 
-        // --- Input Section ---
         OutlinedTextField(
             value = topic,
             onValueChange = { topic = it },
@@ -99,19 +113,18 @@ fun GenerateImageScreen(viewModel: GenerateImageViewModel) {
             Text("Generate")
         }
 
-        // --- Result Section ---
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(1f),
             contentAlignment = Alignment.Center
         ) {
-            // Case 1: Show a loading indicator
+            //loading indicator
             if (uiState.isLoading) {
                 CircularProgressIndicator()
             }
 
-            // Case 2: Show an error message if it exists
+            //error message if it exists
             uiState.error?.let { errorMsg ->
                 Text(
                     text = "Error: $errorMsg",
@@ -121,7 +134,7 @@ fun GenerateImageScreen(viewModel: GenerateImageViewModel) {
                 )
             }
 
-            // Case 3: Show the result if it exists and we are not loading
+            //result if it exists and not loading
             val response = uiState.generatedResponse
             if (response != null && !uiState.isLoading) {
                 Column(
@@ -131,13 +144,13 @@ fun GenerateImageScreen(viewModel: GenerateImageViewModel) {
                         .fillMaxHeight()
                         .padding(top = 16.dp)
                 ) {
-                    // Use the imageUrl from the response object
+                    //imageUrl from the response object
                     AsyncImage(
                         model = response.imageURL,
                         contentDescription = "Generated Image",
                         modifier = Modifier
                             .fillMaxWidth()
-                            .weight(1f), // Allow image to take available space
+                            .weight(1f),
                         contentScale = ContentScale.Fit
                     )
                     OutlinedButton(
@@ -162,7 +175,6 @@ fun GenerateImageScreen(viewModel: GenerateImageViewModel) {
 
 
 private class FakeGenerateImageViewModel(initialState: GenerateImageUIState) : GenerateImageViewModel() {
-    // Override the 'uiState' property from the parent.
     override val uiState: StateFlow<GenerateImageUIState> = MutableStateFlow(initialState)
 }
 
