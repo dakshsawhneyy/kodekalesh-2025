@@ -6,6 +6,7 @@ import com.example.kraftor.backend.dto.GenerateTextRequest
 import com.example.kraftor.data.repository.GenerateTextRepo
 import com.example.kraftor.presentation.states.GenerateTextUIState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -14,15 +15,15 @@ import kotlinx.coroutines.launch
  * ViewModel for the Generate Text screen.
  * @param repository GenerateTextRepo class object
  */
-class GenerateTextViewModel(
-    private val repository: GenerateTextRepo
+open class GenerateTextViewModel(
+    private val repository: GenerateTextRepo? = null
 ) : ViewModel() {
 
     // mutable version the ViewModel can change.
     private val _uiState = MutableStateFlow(GenerateTextUIState())
 
     // read-only version the UI will observe.
-    val uiState = _uiState.asStateFlow()
+    open val uiState: StateFlow<GenerateTextUIState> = _uiState.asStateFlow()
 
     fun generateText(request: GenerateTextRequest) {
 
@@ -35,7 +36,7 @@ class GenerateTextViewModel(
             }
 
             // call the repository
-            val result = repository.generateText(request)
+            val result = repository!!.generateText(request)
 
             // update the UI state
             result.onSuccess { response ->

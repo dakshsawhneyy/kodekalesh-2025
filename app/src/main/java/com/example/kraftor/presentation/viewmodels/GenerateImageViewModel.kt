@@ -6,6 +6,7 @@ import com.example.kraftor.backend.dto.GenerateImageRequest
 import com.example.kraftor.data.repository.GenerateImageRepo
 import com.example.kraftor.presentation.states.GenerateImageUIState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -14,15 +15,15 @@ import kotlinx.coroutines.launch
  * ViewModel for the Generate Image screen.
  * @param repository GenerateImageRepo class object
  */
-class GenerateImageViewModel(
-    private val repository: GenerateImageRepo
+open class GenerateImageViewModel(
+    private val repository: GenerateImageRepo? = null
 ) : ViewModel() {
 
     // mutable version the ViewModel can change.
     private val _uiState = MutableStateFlow(GenerateImageUIState())
 
     // read-only version the UI will observe.
-    val uiState = _uiState.asStateFlow()
+    open val uiState: StateFlow<GenerateImageUIState> = _uiState.asStateFlow()
 
     fun generateImage(request: GenerateImageRequest) {
 
@@ -35,7 +36,7 @@ class GenerateImageViewModel(
             }
 
             // call the repository
-            val result = repository.generateImage(request)
+            val result = repository!!.generateImage(request)
 
             // update the UI state
             result.onSuccess { response ->

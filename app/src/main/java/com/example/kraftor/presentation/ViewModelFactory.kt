@@ -74,7 +74,6 @@ class ViewModelFactory(
             return RewriteViewModel(rewriteRepo) as T
         }
 
-
         else throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
     }
 }

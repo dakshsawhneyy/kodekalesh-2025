@@ -6,6 +6,7 @@ import com.example.kraftor.backend.dto.ReviewRequest
 import com.example.kraftor.data.repository.ReviewRepo
 import com.example.kraftor.presentation.states.ReviewUIState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -14,15 +15,15 @@ import kotlinx.coroutines.launch
  * ViewModel for the Review screen.
  * @param repository Review class object
  */
-class ReviewViewModel(
-    private val repository: ReviewRepo
+open class ReviewViewModel(
+    private val repository: ReviewRepo? = null
 ) : ViewModel() {
 
     // mutable version the ViewModel can change.
     private val _uiState = MutableStateFlow(ReviewUIState())
 
     // read-only version the UI will observe.
-    val uiState = _uiState.asStateFlow()
+    open val uiState: StateFlow<ReviewUIState> = _uiState.asStateFlow()
 
     fun giveReview(request: ReviewRequest) {
 
@@ -35,7 +36,7 @@ class ReviewViewModel(
             }
 
             // call the repository
-            val result = repository.giveFeedback(request)
+            val result = repository!!.giveFeedback(request)
 
             // update the UI state
             result.onSuccess { response ->

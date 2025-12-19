@@ -6,6 +6,7 @@ import com.example.kraftor.backend.dto.LoginRequest
 import com.example.kraftor.data.repository.LoginRepo
 import com.example.kraftor.presentation.states.LoginUIState
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -14,15 +15,15 @@ import kotlinx.coroutines.launch
  * ViewModel for the Login screen.
  * @param repository LoginRepo class object
  */
-class LoginViewModel(
-    private val repository: LoginRepo
+open class LoginViewModel(
+    private val repository: LoginRepo? = null
 ) : ViewModel() {
 
     // mutable version the ViewModel can change.
     private val _uiState = MutableStateFlow(LoginUIState())
 
     // read-only version the UI will observe.
-    val uiState = _uiState.asStateFlow()
+    open val uiState: StateFlow<LoginUIState> = _uiState.asStateFlow()
 
     fun login(request: LoginRequest) {
 
@@ -35,7 +36,7 @@ class LoginViewModel(
             }
 
             // call the repository
-            val result = repository.login(request)
+            val result = repository!!.login(request)
 
             // update the UI state
             result.onSuccess { response ->

@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
  * ViewModel for the Rewrite screen.
  * @param repository Rewrite class object
  */
-class RewriteViewModel(
+open class RewriteViewModel(
     private val repository: RewriteTextRepo
 ) : ViewModel() {
 
@@ -22,7 +22,7 @@ class RewriteViewModel(
     private val _uiState = MutableStateFlow(RewriteUIState())
 
     // read-only version the UI will observe.
-    val uiState = _uiState.asStateFlow()
+    var uiState = _uiState.asStateFlow()
 
     fun rewrite(request: RewriteRequest) {
 
